@@ -6,7 +6,7 @@ langchain
 langchain-community
 langchain-groq
 faiss-cpu
-transformers
+sentence_transformers
 torch
 requests
 openpyxl
