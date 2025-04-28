@@ -1,0 +1,11 @@
+streamlit
+python-dotenv
+pandas
+python-docx
+langchain
+langchain-community
+langchain-groq
+faiss-cpu
+transformers
+torch
+requests
