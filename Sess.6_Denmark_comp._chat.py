@@ -15,10 +15,22 @@ import requests
 # Enable debug logging
 logging.basicConfig(level=logging.DEBUG)
 
-# Load environment variables
-load_dotenv("API_KEY.env")
-GROQ_API_KEY = os.getenv("GROQ_API_KEY", "").strip()
-SERPER_API_KEY = os.getenv("SERPER_API_KEY", "").strip()
+# --- Load API keys from Streamlit secrets ---
+GROQ_API_KEY = st.secrets.get("GROQ_API_KEY", "").strip()
+SERPER_API_KEY = st.secrets.get("SERPER_API_KEY", "").strip()
+
+# --- Check if both keys are found ---
+if not GROQ_API_KEY:
+    st.error("GROQ_API_KEY not found in Streamlit secrets. Please set it in your app's secrets configuration.")
+    st.stop()
+
+if not SERPER_API_KEY:
+    st.error("SERPER_API_KEY not found in Streamlit secrets. Please set it in your app's secrets configuration.")
+    st.stop()
+
+# --- Set as environment variables if needed ---
+os.environ["GROQ_API_KEY"] = GROQ_API_KEY
+os.environ["SERPER_API_KEY"] = SERPER_API_KEY
 
 # Page config (must be set before any other Streamlit commands)
 st.set_page_config(
